@@ -7,10 +7,18 @@ body {
     display: grid;
     grid-template-rows: 40px 1fr;
 }
+img {
+    width: 70px;
+    float: left;
+}
 
 /**************START INDEX*****************/
 #logo {
-    margin: 20px auto;
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
 }
 #connexion-box {
     background-color: transparent;
