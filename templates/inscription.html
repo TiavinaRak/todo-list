@@ -3,5 +3,35 @@
 {% block head %}
 <title>Inscription</title>
 {% endblock %}
-{% block header %}{% endblock %}
-{% block body %}{% endblock %}
+{% block header %}
+<figure id="logo">
+    <img src="../static/images/logo.svg" alt="">
+    <h1>TODO</h1>
+</figure>
+{% endblock %}
+{% block body %}
+<div id="connexion-box">
+    <h1>Inscription</h1>
+    <form action="/" method="POST">
+        <div>
+            <p>
+                <label for="nom">Nom: </label>
+            </p>
+            <input type="text" name="nom" id="nom">
+            <p>
+                <label for="email">Email: </label>
+            </p>
+            <input type="email" name="email" id="email">
+            <p>
+                <label for="mot_de_passe">Mot de passe: </label>
+            </p>
+            <input type="password" name="mot_de_passe" id="mot_de_passe">
+            <p>
+                <label for="verification_mdp">Confirmer votre mot de passe: </label>
+            </p>
+            <input type="password" name="verification_mdp" id="verification_mdp">
+        </div>
+        <button type="submit" class="button_class">S'inscrire</button>
+    </form>
+</div>
+{% endblock %}

@@ -14,7 +14,7 @@
 {% block body %}
 <div id="connexion-box">
     <h1>Connexion</h1>
-    <form action="" method="">
+    <form action="/connexion" method="GET">
         <div>
             <p>
                 <label for="email">Email: </label>
@@ -25,8 +25,8 @@
             </p>
             <input type="password" name="password" id="password">
         </div>
-        <button type="submit">Connexion</button>
+        <button type="submit" class="button_class">Connexion</button>
     </form>
-    <span>Vous n'avez pas de compte? <br> <a href="">Inscrivez-vous!</a></span>
+    <span>Vous n'avez pas de compte? <br> <a href="/inscription">Inscrivez-vous!</a></span>
 </div>
 {% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>todo-list</title>
+{% endblock %}
+
+{% block header %}
+<header id="task-header">
+    <figure id="logo">
+        <img src="../static/images/logo.svg" alt="">
+        <h1>TODO</h1>
+    </figure>
+    <p><button type="button" class="button_class">Deconnexion</button></p>
+</header>
+{% endblock %}
+
+{% block body %}
+<div id="container">
+    <section id="sidebar">
+        <div id="profil">
+            <img src="../static/images/default_profil.svg" alt="photo de profil">
+            <p id="nom">John Doe</p>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="">Tâches</a></li>
+                <li><a href="">Historique</a></li>
+                <li><a href="">Paramètres</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <div>
+            <input type="text">
+            <button type="submit">Ajouter</button>
+        </div>
+    </section>
+
+</div>
+{% endblock %}
