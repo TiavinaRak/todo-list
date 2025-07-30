@@ -10,29 +10,39 @@
         <img src="../static/images/logo.svg" alt="">
         <h1>TODO</h1>
     </figure>
-    <p><button type="button" class="button_class">Deconnexion</button></p>
+    <p><button type="button" class="button_class">Déconnexion</button></p>
 </header>
 {% endblock %}
 
 {% block body %}
 <div id="container">
     <section id="sidebar">
-        <div id="profil">
+        <figure id="profil">
             <img src="../static/images/default_profil.svg" alt="photo de profil">
             <p id="nom">John Doe</p>
-        </div>
+        </figure>
         <nav id="navbar">
             <ul>
-                <li><a href="">Tâches</a></li>
-                <li><a href="">Historique</a></li>
-                <li><a href="">Paramètres</a></li>
+                <li><a href="#">Tâches</a></li>
+                <li><a href="#">Historique</a></li>
+                <li><a href="#">Paramètres</a></li>
             </ul>
         </nav>
     </section>
-    <section>
+    <main>
         <div>
+            <section class="infos-style">25 juillet 2025</section>
+            <section class="infos-style"><span id="nombres_taches">3</span> taches en cours</section>
         </div>
-    </section>
+        <div>
+            <input type="text" placeholder="Ajouter une nouvelle tâche">
+            <button type="submit">Ajouter</button>
+        </div>
+        <div id="task-container">
+            <p>Mes tâches:</p>
+            <section>Aucune tâches ajoutées</section>
+        </div>
+    </main>
 
 </div>
 {% endblock %}
