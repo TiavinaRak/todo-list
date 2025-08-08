@@ -5,14 +5,14 @@
 {% endblock %}
 {% block header %}
 <figure id="logo">
-    <img src="../static/images/logo.svg" alt="">
+    <img src="{{url_for('static', filename='images/logo.svg')}}" alt="">
     <h1>TODO</h1>
 </figure>
 {% endblock %}
 {% block body %}
 <div id="connexion-box">
     <h1>Inscription</h1>
-    <form action="/" method="get">
+    <form action="/inscription" method="post">
         <div>
             <p>
                 <label for="nom">Nom: </label>

@@ -7,10 +7,10 @@
 {% block header %}
 <header id="task-header">
     <figure id="logo">
-        <img src="../static/images/logo.svg" alt="">
+        <img src="{{url_for('static', filename='images/logo.svg')}}" alt="">
         <h1>TODO</h1>
     </figure>
-    <p><button type="button" class="button_class">Déconnexion</button></p>
+    <a href="/deconnexion"><button type="submit" class="button_class">Déconnexion</button></a>
 </header>
 {% endblock %}
 
@@ -18,8 +18,8 @@
 <div id="container">
     <section id="sidebar">
         <figure id="profil">
-            <img src="../static/images/default_profil.svg" alt="photo de profil">
-            <p id="nom">John Doe</p>
+            <img src="{{url_for('static', filename='images/default_profil.svg')}}" alt="photo de profil">
+            <p id="nom">{{username}}</p>
         </figure>
         <nav id="navbar">
             <ul>
@@ -31,16 +31,26 @@
     </section>
     <main>
         <div>
-            <section class="infos-style">25 juillet 2025</section>
-            <section class="infos-style"><span id="nombres_taches">3</span> taches en cours</section>
+            <section class="infos-style">{{today_date}}</section>
+            <section class="infos-style"><span id="nombres_taches">{{task_list | length}}</span> taches en cours</section>
         </div>
-        <div>
-            <input type="text" placeholder="Ajouter une nouvelle tâche">
+        <form action="ajouter_tache" method="post">
+            <input type="text" name="tache" id="tache" placeholder="Ajouter une nouvelle tâche">
             <button type="submit">Ajouter</button>
-        </div>
+        </form>
         <div id="task-container">
             <p>Mes tâches:</p>
-            <section>Aucune tâches ajoutées</section>
+            <section>
+                {% if task_list|length < 1 %}
+                    Aucunes tâches à afficher.
+                {% else %}
+                <ul>
+                    {% for task in task_list %}
+                    <li>{{task.content}} <span>{{task.date_created}}</span></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </section>
         </div>
     </main>
 
