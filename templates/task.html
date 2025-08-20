@@ -16,6 +16,11 @@
 
 {% block body %}
 <div id="container">
+    <button id="menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <section id="sidebar">
         <figure id="profil">
             <img src="{{url_for('static', filename='images/default_profil.svg')}}" alt="photo de profil">
@@ -55,4 +60,18 @@
     </main>
 
 </div>
+<script>
+    let btn = document.getElementById("menu")
+    let sidebar = document.getElementById("sidebar")
+    const mediaQuery = window.matchMedia("(min-width: 752px)");
+    btn.addEventListener("click", () => {
+        sidebar.classList.toggle("show")
+    })
+    function handleResize(e) {
+        if (e.matches) {
+            sidebar.removeAttribute("class")
+        }
+    }
+    mediaQuery.addEventListener("change", handleResize);
+</script>
 {% endblock %}

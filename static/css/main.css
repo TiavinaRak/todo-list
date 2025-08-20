@@ -130,14 +130,36 @@ img {
     height: 80%;
     margin: auto;
     border-radius: 20px;
+    position: relative;
 
     #sidebar {
+        display: grid;
         border-radius: 20px 0 0 20px;
         background-color: #a8d5a8;
-        display: grid;
-        grid-template-rows: 120px 1fr;
+        grid-template-rows: auto 120px 1fr;
         overflow: hidden;
         box-shadow: 1px 0.5px 1px 0 #f5f5f5;
+        width: 250px;
+    }
+
+    #menu {
+        display: none;
+        width: 40px;
+        position: absolute;
+        background-color: transparent;
+        margin: 10px 0 0 10px;
+        border: none;
+        span {
+            display: block;
+            border-top: 3px solid black;
+            margin: 4px;
+        }
+    }
+    #menu:hover {
+        cursor: pointer;
+        span {
+            border-color: #e0e0e0;
+        }
     }
 
     #profil {
@@ -274,6 +296,28 @@ img {
             li:hover {
                 background-color: #a8d5a8;
             }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #container {
+        grid-template-columns: 1fr;
+        #sidebar {
+            width: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%; 
+            z-index: 5000;
+            transition: 0.2s;
+        }
+        #sidebar.show {
+            width: 250px;
+        }
+        #menu {
+            display: block;
+            z-index: 10000;
         }
     }
 }

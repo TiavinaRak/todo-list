@@ -1,7 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect
 from routes.models import db, Users, Task
 from datetime import datetime
+from argon2 import PasswordHasher
 import locale
+
+# objet servant a hasher un mdp
+#   utilisation du librairies argon2 de python
+ph = PasswordHasher()
 
 # mettre la langue des dates en FR
 locale.setlocale(locale.LC_TIME, 'fr_FR')
@@ -31,8 +36,9 @@ def inscription():
         if request.form["mot_de_passe"] == request.form["verification_mdp"]:
             # récupérer les infos entrer par l'utilisateur
             nom, em, pwd = request.form["nom"], request.form["email"], request.form["mot_de_passe"]
+            hash_pwd = ph.hash(pwd) #hasher le mdp
             # initialiser un nouvel utilisateur
-            new_user = Users(name=nom, email=em, password=pwd)
+            new_user = Users(name=nom, email=em, password=hash_pwd)
             try:
                 db.session.add(new_user) # ajouter l'utilisateur
                 db.session.commit() # envoyer la requête
@@ -44,21 +50,29 @@ def inscription():
 # fonction appeler quand on essaie de se connecter
 @app.route("/connexion", methods=['GET', 'POST'])
 def connexion():
-    users = Users.query.all() # récupérer tous les utilisateurs
     email, password = request.form["email"] ,request.form["password"]
-    for user in users:
-        # vérifier si les infos entrés par l'utilisateurs sont exacts
-        if user.email == email and user.password == password:
-            USER_CONNECTED["name"] = user.name
-            USER_CONNECTED["id"] = user.id
-            return redirect("/mes_taches") # appel la fonction qui redirige vers la page des taches
+    user = Users.query.where(Users.email == email).first() # récupérer l'utilisateur ayant l'email rentré
+    # si l'utilisateurs n'existe pas on fait rien
+    if not user:
+        return redirect("/")
+    # vérifier si les infos entrés par l'utilisateurs sont exacts
+    #   utilisation de la methode verify de l'objet ph
+    #   (mdp hasher, mdp normal)
+    if ph.verify(user.password, password):
+        # modifier l'info sur l'utilisateur connecté
+        #   (c'est mieux d'utiliser caches js au lieu des variables globales)
+        USER_CONNECTED["name"] = user.name
+        USER_CONNECTED["id"] = user.id
+        return redirect("/mes_taches") # appel la fonction qui redirige vers la page des taches
     return redirect("/")
 
 # fonction permettant d'ajouter une nouvelle tache
 @app.route("/ajouter_tache", methods=['GET', 'POST'])
 def ajouter_tache():
+    # si la tache entrer est vide on fait rien
     if request.form["tache"] == "":
         return redirect("/mes_taches")
+    # sinon initialiser la nouvelle taches
     new_task = Task(content=request.form["tache"], user_id=USER_CONNECTED["id"],
                     date_created=datetime.today().strftime("%d %B"))
     try:
@@ -71,7 +85,7 @@ def ajouter_tache():
 
 @app.route("/mes_taches", methods=['GET', 'POST'])
 def afficher_taches():
-    tasks = Task.query.where(Task.user_id==USER_CONNECTED["id"]).all()
+    tasks = Task.query.where(Task.user_id==USER_CONNECTED["id"]).all() # reccuperer toutes les taches sous forme de liste
     return render_template("task.html", task_list=tasks,
                            username=USER_CONNECTED["name"],
                            today_date=datetime.today().strftime("%d %B %Y"))
