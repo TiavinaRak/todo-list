@@ -4,6 +4,10 @@ from datetime import datetime
 from argon2 import PasswordHasher
 import locale
 
+USER_CONNECTED = {
+        "name" : "",
+        "id" : 0
+}
 # objet servant a hasher un mdp
 #   utilisation du librairies argon2 de python
 ph = PasswordHasher()
@@ -98,8 +102,4 @@ def deconnexion():
 
 
 if __name__ == "__main__":
-    USER_CONNECTED = {
-        "name" : "",
-        "id" : 0
-    }
     app.run(debug=True)
