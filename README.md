@@ -18,11 +18,11 @@ A simple todo-list created with flask
 `flask run` <br>
 then open http://127.0.0.1:5000 in your favorite browser
 
-## Sample of the project
-# Connection/inscription 
+## UI preview
+* Connection/inscription
 ![alt text](images/connexion.png)
 ![alt text](images/inscription.png)
-# Home
+* Home
 ![alt text](images/home.png)
 
 ## Future improvements
