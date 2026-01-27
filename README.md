@@ -1,32 +1,63 @@
-## Description
-A simple todo-list created with flask
+# 📝 Todo-list – Application Web Flask
 
-## Clone the repository
-`git clone https://github.com/TiavinaRak/todo-list.git`<br>
-`cd todo-list`
+Application web de gestion de tâches développée avec Flask permettant à chaque utilisateur de gérer ses propres tâches après authentification.
 
-## Create a virtual environment
-`python -m venv venv` <br>
-=> Then run the command below to activate it: <br>
-`source venv/bin/activate`   # On Linux/Mac <br>
-`venv\Scripts\activate`      # On Windows
+---
 
-## Install depnedencies
-`pip install -r requirements.txt`
+## 🚀 Fonctionnalités
+- Inscription et connexion des utilisateurs
+- Gestion de tâches personnelles
+- Interface simple et intuitive
+- Données persistées avec une base SQLite
 
-## Run the application
-`flask run` <br>
-then open http://127.0.0.1:5000 in your favorite browser
+---
 
-## UI preview
-* Connection/inscription
-![alt text](images/connexion.png)
-![alt text](images/inscription.png)
-* Home
-![alt text](images/home.png)
+## 🛠 Technologies utilisées
+- Backend : Python, Flask
+- Frontend : HTML, CSS
+- Base de données : SQLite
+- Outils : Git, Virtual Environment (venv)
 
-## Future improvements
-* Delete/update task
-* history of deleted task
-* Update user infos
-* add tasks without reloading the page
+---
+
+## 📦 Installation et exécution
+
+### Cloner le dépôt
+git clone https://github.com/TiavinaRak/todo-list.git  
+cd todo-list
+
+### Créer et activer un environnement virtuel
+python -m venv venv
+
+Activation :
+source venv/bin/activate      (Linux / macOS)  
+venv\\Scripts\\activate       (Windows)
+
+### Installer les dépendances
+pip install -r requirements.txt
+
+### Lancer l’application
+flask run
+
+Puis ouvrir le navigateur à l’adresse :  
+http://127.0.0.1:5000
+
+---
+
+## 🖼 Aperçu de l’interface
+
+### 🔐 Authentification
+![Connexion](images/connexion.png)  
+![Inscription](images/inscription.png)
+
+### 🏠 Page principale
+![Accueil](images/home.png)
+
+---
+
+## 📈 Améliorations prévues
+- Modification et suppression des tâches
+- Historique des tâches supprimées
+- Mise à jour des informations utilisateur
+- Ajout et gestion des tâches sans rechargement de la page
+- Amélioration de la sécurité et de la validation des formulaires
