@@ -47,7 +47,7 @@
             <p>Mes tâches:</p>
             <section>
                 {% if task_list|length < 1 %}
-                    Aucunes tâches à afficher.
+                    <h3 style="text-align: center;">Aucunes tâches à afficher.</h3>
                 {% else %}
                 <ul>
                     {% for task in task_list %}

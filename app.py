@@ -78,7 +78,7 @@ def ajouter_tache():
         return redirect("/mes_taches")
     # sinon initialiser la nouvelle taches
     new_task = Task(content=request.form["tache"], user_id=USER_CONNECTED["id"],
-                    date_created=datetime.today().strftime("%d %B"))
+                    date_created=datetime.today().strftime("%d %m %y"))
     try:
         db.session.add(new_task)
         db.session.commit()
@@ -92,7 +92,7 @@ def afficher_taches():
     tasks = Task.query.where(Task.user_id==USER_CONNECTED["id"]).all() # reccuperer toutes les taches sous forme de liste
     return render_template("task.html", task_list=tasks,
                            username=USER_CONNECTED["name"],
-                           today_date=datetime.today().strftime("%d %B %Y"))
+                           today_date=datetime.today().strftime("%d - %m - %Y"))
 
 @app.route("/deconnexion")
 def deconnexion():
